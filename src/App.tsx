@@ -2,8 +2,8 @@ import * as React from "react";
 
 import { Route } from "react-router-dom";
 
-import Layout from "./Components/Layout";
-import PlanetsContainer from "./Components/Planets/PlanetsContainer";
+import Layout from "./components/Layout";
+import PlanetsContainer from "./components/Planets/PlanetsContainer";
 
 class App extends React.Component {
   public render() {
