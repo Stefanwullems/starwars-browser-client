@@ -1,3 +1,5 @@
+type Content = Planet;
+
 interface Planet {
   name: string;
   climate: string;

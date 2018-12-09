@@ -5,3 +5,7 @@ interface ErrorAction extends Action<LoadingActionType> {
 }
 
 interface LoadingAction extends Action<LoadingActionType> {}
+
+interface ContentAction extends Action<ContentActionType> {
+  payload: Content;
+}
