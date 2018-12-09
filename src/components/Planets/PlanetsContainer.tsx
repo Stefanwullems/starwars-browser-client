@@ -2,16 +2,18 @@ import * as React from "react";
 import { connect } from "react-redux";
 import fetchModel from "../../redux/actions/fetch-model";
 import cleanUpContent from "../../redux/actions/clean-up-content";
+import { RouteComponentProps } from "react-router";
 
-interface Dispatch {
+interface MappedProps extends RouteComponentProps {
   fetchModel: (model: Models, id: number) => void;
   cleanUpContent: () => void;
 }
 
-class PlanetsContainer extends React.Component<Dispatch> {
+interface IProps extends MappedProps {}
+
+class PlanetsContainer extends React.Component<IProps> {
   componentDidMount() {
-    console.log("hi");
-    this.props.fetchModel("planets", 1);
+    this.props.fetchModel("planets", this.props.match.params["id"]);
   }
 
   componentWillUnmount() {

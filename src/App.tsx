@@ -14,10 +14,6 @@ interface IProps {
 }
 
 class App extends React.Component<IProps> {
-  componentDidUpdate() {
-    console.log(window.URL);
-  }
-
   public render() {
     return (
       <Layout forceUpdateApp={this.forceUpdate.bind(this)}>
