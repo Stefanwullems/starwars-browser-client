@@ -1,14 +1,13 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
-import { withStyles } from "@material-ui/core";
+import { withStyles, createStyles, WithStyles } from "@material-ui/core";
 
-interface IProps {
+interface IProps extends WithStyles<typeof styles> {
   to: string;
-  children: string;
   classes: any;
 }
 
-const styles = {
+const styles = createStyles({
   navButton: {
     color: "#fff",
     borderBottomColor: "#24292e",
@@ -24,14 +23,16 @@ const styles = {
   link: {
     textDecoration: "none"
   }
-};
+});
 
-function NavButton({ to, children, classes }: IProps) {
+const NavButton: React.FunctionComponent<IProps> = props => {
+  const { to, classes, children } = props;
+
   return (
     <Link to={to} className={classes.link}>
       <div className={classes.navButton}>{children}</div>
     </Link>
   );
-}
+};
 
 export default withStyles(styles)(NavButton);
