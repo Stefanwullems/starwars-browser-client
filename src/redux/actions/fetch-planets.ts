@@ -15,7 +15,8 @@ function fetchPlanets(id: number) {
       dispatch({ type: "PLANETS_FETCHED", payload: res.body as Planet });
       dispatch({ type: "LOADING_SUCCESS" });
     } catch (error) {
-      dispatch({ type: "LOADING_ERROR" });
+      console.error(error);
+      dispatch({ type: "LOADING_ERROR", payload: error });
     }
   };
 }

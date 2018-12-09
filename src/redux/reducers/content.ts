@@ -4,11 +4,10 @@ export default function(
   state: Content | null = null,
   { type, payload }: ContentAction
 ): Content | null {
-  switch (type.includes("FETCHED")) {
-    case true:
+  switch (type) {
+    case "PLANETS_FETCHED":
       return payload;
-    case false:
-      if (type.includes("ERROR")) return null;
+    case "PLANET_FETCHING_ERROR":
     default:
       return state;
   }

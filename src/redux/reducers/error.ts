@@ -5,10 +5,7 @@ export default function(
   { type, payload }: ErrorAction
 ): string | null {
   switch (type) {
-    case "LOADING":
-      return payload;
     case "LOADING_ERROR":
-    case "LOADING_SUCCESS":
       return payload;
     default:
       return state;
