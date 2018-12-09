@@ -14,9 +14,13 @@ interface IProps {
 }
 
 class App extends React.Component<IProps> {
+  componentDidUpdate() {
+    console.log(window.URL);
+  }
+
   public render() {
     return (
-      <Layout>
+      <Layout forceUpdateApp={this.forceUpdate.bind(this)}>
         {this.props.loading && <CircularProgress />}
         <Route exact path="/" component={HomeContainer} />
         <Route exact path="/planets/:id" component={PlanetsContainer} />

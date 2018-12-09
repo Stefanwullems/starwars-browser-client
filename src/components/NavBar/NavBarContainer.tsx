@@ -3,7 +3,11 @@ import NavHeader from "./NavHeader";
 import { Grid } from "@material-ui/core";
 import NavButton from "./NavButton";
 
-class NavBarContainer extends React.Component {
+interface IProps {
+  forceUpdateApp: () => void;
+}
+
+class NavBarContainer extends React.Component<IProps> {
   render() {
     return (
       <React.Fragment>
@@ -11,7 +15,12 @@ class NavBarContainer extends React.Component {
         <Grid container style={{ height: "94vh" }}>
           <Grid item xs={2} style={{ backgroundColor: "#24292e" }} />
           <Grid item xs={10}>
-            <NavButton to="/planets/1">Planets</NavButton>
+            <NavButton to="/" onClick={this.props.forceUpdateApp}>
+              Home
+            </NavButton>
+            <NavButton to="/planets/1" onClick={this.props.forceUpdateApp}>
+              Planets
+            </NavButton>
           </Grid>
         </Grid>
       </React.Fragment>
