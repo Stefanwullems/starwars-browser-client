@@ -1,8 +1,6 @@
 import * as React from "react";
 import { withStyles, WithStyles, createStyles } from "@material-ui/core";
 
-interface IProps extends WithStyles<typeof styles> {}
-
 const styles = createStyles({
   header: {
     color: "#606060",
@@ -16,7 +14,7 @@ const styles = createStyles({
   }
 });
 
-const NavHeader: React.FunctionComponent<IProps> = props => {
+const NavHeader: React.FunctionComponent<WithStyles<typeof styles>> = props => {
   const { classes } = props;
 
   return (

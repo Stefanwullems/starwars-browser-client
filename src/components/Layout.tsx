@@ -2,8 +2,6 @@ import * as React from "react";
 import { Grid, withStyles, createStyles, WithStyles } from "@material-ui/core";
 import NavBarContainer from "./NavBar/NavBarContainer";
 
-interface IProps extends WithStyles<typeof styles> {}
-
 const styles = createStyles({
   navBar: {
     backgroundColor: "#202529",
@@ -12,7 +10,7 @@ const styles = createStyles({
   main: {}
 });
 
-const Layout: React.FunctionComponent<IProps> = props => {
+const Layout: React.FunctionComponent<WithStyles<typeof styles>> = props => {
   const { classes, children } = props;
   return (
     <Grid container>

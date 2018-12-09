@@ -4,7 +4,6 @@ import { withStyles, createStyles, WithStyles } from "@material-ui/core";
 
 interface IProps extends WithStyles<typeof styles> {
   to: string;
-  classes: any;
 }
 
 const styles = createStyles({

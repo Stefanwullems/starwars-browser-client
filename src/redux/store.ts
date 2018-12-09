@@ -1,6 +1,5 @@
 import { createStore, compose, applyMiddleware } from "redux";
 import Thunk from "redux-thunk";
-import plainify from "redux-plainify";
 
 import rootReducer from "./reducers";
 
@@ -9,9 +8,8 @@ const devTools =
   (window as any).__REDUX_DEVTOOLS_EXTENSION__();
 
 const enhancer = compose(
-  applyMiddleware(Thunk.withExtraArgument(fetch)),
-  devTools,
-  plainify
+  applyMiddleware(Thunk),
+  devTools
 );
 
 const store = createStore(rootReducer, enhancer);
