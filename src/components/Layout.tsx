@@ -10,18 +10,21 @@ const styles = createStyles({
   main: {}
 });
 
-const Layout: React.FunctionComponent<WithStyles<typeof styles>> = props => {
-  const { classes, children } = props;
-  return (
-    <Grid container>
-      <Grid item xs={2} className={classes.navBar}>
-        <NavBarContainer />
+class Layout extends React.Component<WithStyles<typeof styles>> {
+  render() {
+    const { classes, children } = this.props;
+    console.log(children);
+    return (
+      <Grid container>
+        <Grid item xs={2} className={classes.navBar}>
+          <NavBarContainer />
+        </Grid>
+        <Grid item xs={10} className={classes.main}>
+          {children}
+        </Grid>
       </Grid>
-      <Grid item xs={10} className={classes.main}>
-        {children}
-      </Grid>
-    </Grid>
-  );
-};
+    );
+  }
+}
 
 export default withStyles(styles)(Layout);

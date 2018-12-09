@@ -4,15 +4,27 @@ import { Route } from "react-router-dom";
 
 import Layout from "./components/Layout";
 import PlanetsContainer from "./components/Planets/PlanetsContainer";
+import HomeContainer from "./components/Home/HomeContainer";
 
-class App extends React.Component {
+import { connect } from "react-redux";
+import { CircularProgress } from "@material-ui/core";
+
+interface IProps {
+  loading: boolean;
+}
+
+class App extends React.Component<IProps> {
   public render() {
     return (
       <Layout>
-        <Route path="/planets/:id" component={PlanetsContainer} />
+        {this.props.loading && <CircularProgress />}
+        <Route exact path="/" component={HomeContainer} />
+        <Route exact path="/planets/:id" component={PlanetsContainer} />
       </Layout>
     );
   }
 }
 
-export default App;
+const mstp = ({ loading }) => ({ loading });
+
+export default connect(mstp)(App);

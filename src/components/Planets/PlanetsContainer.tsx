@@ -1,14 +1,21 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import fetchPlanets from "../../redux/actions/fetch-planets";
+import fetchModel from "../../redux/actions/fetch-model";
+import cleanUpContent from "../../redux/actions/clean-up-content";
 
 interface Dispatch {
-  fetchPlanets: (id: number) => void;
+  fetchModel: (model: Models, id: number) => void;
+  cleanUpContent: () => void;
 }
 
 class PlanetsContainer extends React.Component<Dispatch> {
   componentDidMount() {
-    this.props.fetchPlanets(1);
+    console.log("hi");
+    this.props.fetchModel("planets", 1);
+  }
+
+  componentWillUnmount() {
+    this.props.cleanUpContent();
   }
 
   render() {
@@ -16,11 +23,10 @@ class PlanetsContainer extends React.Component<Dispatch> {
   }
 }
 
-const mdtp = {
-  fetchPlanets
-};
+const mstp = ({ content }) => ({ content });
+const mdtp = { fetchModel, cleanUpContent };
 
 export default connect(
-  null,
+  mstp,
   mdtp
 )(PlanetsContainer);

@@ -1,4 +1,5 @@
 type Content = Planet;
+type Models = "planets";
 
 interface Planet {
   name: string;
