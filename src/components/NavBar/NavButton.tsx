@@ -4,6 +4,7 @@ import { withStyles, createStyles, WithStyles } from "@material-ui/core";
 
 interface IProps extends WithStyles<typeof styles> {
   to: string;
+  onClick: () => void;
 }
 
 const styles = createStyles({
@@ -28,7 +29,13 @@ const NavButton: React.FunctionComponent<IProps> = props => {
   const { to, classes, children } = props;
 
   return (
-    <Link to={to} className={classes.link}>
+    <Link
+      to={to}
+      className={classes.link}
+      onClick={e => {
+        props.onClick();
+      }}
+    >
       <div className={classes.navButton}>{children}</div>
     </Link>
   );

@@ -7,7 +7,8 @@ export default function(
   switch (type) {
     case "PLANETS_FETCHED":
       return payload;
-    case "PLANET_FETCHING_ERROR":
+    case "CLEAN_UP_CONTENT":
+      return null;
     default:
       return state;
   }

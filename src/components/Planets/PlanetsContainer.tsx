@@ -1,14 +1,29 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import fetchPlanets from "../../redux/actions/fetch-planets";
+import fetchModel from "../../redux/actions/fetch-model";
+import cleanUpContent from "../../redux/actions/clean-up-content";
+import { RouteComponentProps } from "react-router";
 
-interface Dispatch {
-  fetchPlanets: (id: number) => void;
+interface IProps {
+  fetchModel: (model: Models, id: number) => void;
+  cleanUpContent: () => void;
+  content: Content;
+  loading: boolean;
 }
 
-class PlanetsContainer extends React.Component<Dispatch> {
+class PlanetsContainer extends React.Component<IProps & RouteComponentProps> {
   componentDidMount() {
-    this.props.fetchPlanets(1);
+    this.props.fetchModel("planets", this.props.match.params["id"]);
+  }
+
+  async componentDidUpdate() {
+    if (!this.props.content && !this.props.loading) {
+      this.props.fetchModel("planets", this.props.match.params["id"]);
+    }
+  }
+
+  componentWillUnmount() {
+    this.props.cleanUpContent();
   }
 
   render() {
@@ -16,11 +31,10 @@ class PlanetsContainer extends React.Component<Dispatch> {
   }
 }
 
-const mdtp = {
-  fetchPlanets
-};
+const mstp = ({ content, loading }) => ({ content, loading });
+const mdtp = { fetchModel, cleanUpContent };
 
 export default connect(
-  null,
+  mstp,
   mdtp
 )(PlanetsContainer);
