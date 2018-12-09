@@ -4,16 +4,22 @@ import fetchModel from "../../redux/actions/fetch-model";
 import cleanUpContent from "../../redux/actions/clean-up-content";
 import { RouteComponentProps } from "react-router";
 
-interface MappedProps extends RouteComponentProps {
+interface IProps {
   fetchModel: (model: Models, id: number) => void;
   cleanUpContent: () => void;
+  content: Content;
+  loading: boolean;
 }
 
-interface IProps extends MappedProps {}
-
-class PlanetsContainer extends React.Component<IProps> {
+class PlanetsContainer extends React.Component<IProps & RouteComponentProps> {
   componentDidMount() {
     this.props.fetchModel("planets", this.props.match.params["id"]);
+  }
+
+  async componentDidUpdate() {
+    if (!this.props.content && !this.props.loading) {
+      this.props.fetchModel("planets", this.props.match.params["id"]);
+    }
   }
 
   componentWillUnmount() {
@@ -25,7 +31,7 @@ class PlanetsContainer extends React.Component<IProps> {
   }
 }
 
-const mstp = ({ content }) => ({ content });
+const mstp = ({ content, loading }) => ({ content, loading });
 const mdtp = { fetchModel, cleanUpContent };
 
 export default connect(
