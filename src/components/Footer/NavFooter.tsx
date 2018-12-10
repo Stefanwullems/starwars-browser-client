@@ -10,6 +10,7 @@ import { RouteComponentProps } from "react-router";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import cleanUpContent from "../../redux/actions/clean-up-content";
+import contentCount from "src/redux/reducers/contentCount";
 
 const styles = createStyles({
   footerContainer: {
@@ -24,6 +25,8 @@ const styles = createStyles({
 
 interface IProps extends WithStyles<typeof styles> {
   cleanUpContent: () => void;
+  contentCount: number;
+  loading: boolean;
 }
 
 class NavFooter extends React.Component<IProps & RouteComponentProps> {
@@ -47,39 +50,51 @@ class NavFooter extends React.Component<IProps & RouteComponentProps> {
     const id = Number(this.props.match.params["id"]);
 
     return (
-      <Grid container className={classes.footerContainer}>
-        <Grid item xs={6}>
-          <Link
-            to={this.getPageUrl(path, id, "Prev")}
-            onClick={this.handleClick.bind(this)}
-          >
-            <Button className={classes.button} style={this.buttonStyle("Left")}>
-              Prev
-            </Button>
-          </Link>
-        </Grid>
-        <Grid item xs={6}>
-          <Link
-            to={this.getPageUrl(path, id, "Next")}
-            onClick={this.handleClick.bind(this)}
-          >
-            <Button
-              className={classes.button}
-              style={this.buttonStyle("Right")}
-            >
-              Next
-            </Button>
-          </Link>
-        </Grid>
-      </Grid>
+      <React.Fragment>
+        {!this.props.loading && (
+          <Grid container className={classes.footerContainer}>
+            <Grid item xs={6}>
+              {id > 1 && (
+                <Link
+                  to={this.getPageUrl(path, id, "Prev")}
+                  onClick={this.handleClick.bind(this)}
+                >
+                  <Button
+                    className={classes.button}
+                    style={this.buttonStyle("Left")}
+                  >
+                    Prev
+                  </Button>
+                </Link>
+              )}
+            </Grid>
+            <Grid item xs={6}>
+              {id < this.props.contentCount && (
+                <Link
+                  to={this.getPageUrl(path, id, "Next")}
+                  onClick={this.handleClick.bind(this)}
+                >
+                  <Button
+                    className={classes.button}
+                    style={this.buttonStyle("Right")}
+                  >
+                    Next
+                  </Button>
+                </Link>
+              )}
+            </Grid>
+          </Grid>
+        )}
+      </React.Fragment>
     );
   }
 }
 
+const mstp = ({ contentCount, loading }) => ({ contentCount, loading });
 const mdtp = { cleanUpContent };
 
 const ConnectedNavFooter = connect(
-  null,
+  mstp,
   mdtp
 )(NavFooter);
 
