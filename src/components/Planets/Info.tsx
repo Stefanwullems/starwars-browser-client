@@ -21,7 +21,7 @@ const Info: React.FC<IProps & WithStyles<typeof styles>> = props => {
       <h2>{props.title}</h2>
       {Object.keys(props.info).map(key => (
         <div>
-          {key}: {props.info[key]}
+          <strong>{key.replace("_", " ")}:</strong> {props.info[key]}
         </div>
       ))}
     </Grid>
