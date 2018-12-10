@@ -29,9 +29,10 @@ interface IProps extends WithStyles<typeof styles> {
 }
 
 class NavFooter extends React.Component<IProps & RouteComponentProps> {
-  getPageUrl = (path: string, id: number, page: "Prev" | "Next") => {
+  getPageUrl = (model: string, id: number, page: "Prev" | "Next") => {
     const n = page === "Prev" ? -1 : 1;
-    return path.replace(":id", (id + n).toString());
+
+    return `/${model}/${id + n}`;
   };
   buttonStyle = (orientation: "Left" | "Right") => ({
     marginRight: orientation === "Left" ? "20%" : "60%",
@@ -45,7 +46,7 @@ class NavFooter extends React.Component<IProps & RouteComponentProps> {
 
   render() {
     const { classes } = this.props;
-    const path = this.props.match.path;
+    const model = this.props.match.params["model"];
     const id = Number(this.props.match.params["id"]);
 
     return (
@@ -55,7 +56,7 @@ class NavFooter extends React.Component<IProps & RouteComponentProps> {
             <Grid item xs={6}>
               {id > 1 && (
                 <Link
-                  to={this.getPageUrl(path, id, "Prev")}
+                  to={this.getPageUrl(model, id, "Prev")}
                   onClick={this.handleClick.bind(this)}
                 >
                   <Button
@@ -70,7 +71,7 @@ class NavFooter extends React.Component<IProps & RouteComponentProps> {
             <Grid item xs={6}>
               {id < this.props.contentCount && (
                 <Link
-                  to={this.getPageUrl(path, id, "Next")}
+                  to={this.getPageUrl(model, id, "Next")}
                   onClick={this.handleClick.bind(this)}
                 >
                   <Button

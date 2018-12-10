@@ -18,8 +18,10 @@ function fetchModel(model: Models, id: number) {
       switch (model) {
         case "planets":
           dispatch(setContentCount(61));
+          break;
         case "characters":
           dispatch(setContentCount(87));
+          break;
       }
 
       dispatch({ type: "CONTENT_FETCHED", payload: res.body as Planet });

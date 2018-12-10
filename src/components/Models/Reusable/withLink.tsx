@@ -11,7 +11,6 @@ export default async function(
   const res = await request.get(url);
   const arr = url.split("/");
   const id = arr[arr.length - 2];
-  console.log(arr);
 
   return (
     <Link
