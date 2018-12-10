@@ -31,7 +31,16 @@ class App extends React.Component<IProps> {
         )}
         <Route exact path="/" component={HomeContainer} />
         <Route exact path="/planets/:id" component={PlanetsContainer} />
-        <Route exact path="/characters/:id" component={CharactersContainer} />
+        <Route
+          exact
+          path="/characters/:id"
+          render={props => (
+            <CharactersContainer
+              {...props}
+              forceUpdateApp={this.forceUpdate.bind(this)}
+            />
+          )}
+        />
       </Layout>
     );
   }
