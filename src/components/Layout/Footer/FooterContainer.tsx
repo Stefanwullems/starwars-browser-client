@@ -7,7 +7,7 @@ class FooterContainer extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <Route path="/planets/:id" component={NavFooter} />
+        <Route path="/:model/:id" component={NavFooter} />
       </React.Fragment>
     );
   }
