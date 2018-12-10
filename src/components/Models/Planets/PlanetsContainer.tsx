@@ -1,16 +1,16 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import fetchModel from "../../redux/actions/fetch-model";
-import cleanUpContent from "../../redux/actions/clean-up-content";
+import fetchModel from "src/redux/actions/fetch-model";
+import cleanUpContent from "src/redux/actions/clean-up-content";
 import { RouteComponentProps } from "react-router";
-import Header from "./Header";
+import ModelHeader from "../Reusable/ModelHeader";
 import { Grid } from "@material-ui/core";
-import Info from "./Info";
+import Info from "../Reusable/Info";
 
 interface IProps {
   fetchModel: (model: Models, id: number) => void;
   cleanUpContent: () => void;
-  content: Content;
+  content: Planet | null;
   loading: boolean;
   contentCount: number;
 }
@@ -50,7 +50,7 @@ class PlanetsContainer extends React.Component<IProps & RouteComponentProps> {
       <React.Fragment>
         {!!this.props.content && (
           <React.Fragment>
-            <Header name={this.props.content.name} />
+            <ModelHeader name={this.props.content.name} />
             <Grid container>
               <Info title="Geographical Info" info={this.geographicalInfo()} />
               <Info title="Astronomical Info" info={this.astronomicalInfo()} />

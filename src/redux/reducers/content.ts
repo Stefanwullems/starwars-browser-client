@@ -5,7 +5,7 @@ export default function(
   { type, payload }: ContentAction
 ): Content | null {
   switch (type) {
-    case "PLANETS_FETCHED":
+    case "CONTENT_FETCHED":
       return payload;
     case "CLEAN_UP_CONTENT":
       return null;
