@@ -11,4 +11,6 @@ interface Planet {
   terrain: string;
   surface_water: string;
   population: string;
+  residents: string[];
+  films: string[];
 }

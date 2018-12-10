@@ -4,7 +4,8 @@ import fetchModel from "../../redux/actions/fetch-model";
 import cleanUpContent from "../../redux/actions/clean-up-content";
 import { RouteComponentProps } from "react-router";
 import Header from "./Header";
-import NotFound from "../ErrorPages/NotFound";
+import { Grid } from "@material-ui/core";
+import Info from "./Info";
 
 interface IProps {
   fetchModel: (model: Models, id: number) => void;
@@ -19,7 +20,7 @@ class PlanetsContainer extends React.Component<IProps & RouteComponentProps> {
     this.props.fetchModel("planets", this.props.match.params["id"]);
   }
 
-  async componentDidUpdate() {
+  componentDidUpdate() {
     if (!this.props.content && !this.props.loading) {
       this.props.fetchModel("planets", this.props.match.params["id"]);
     }
@@ -29,10 +30,33 @@ class PlanetsContainer extends React.Component<IProps & RouteComponentProps> {
     this.props.cleanUpContent();
   }
 
+  geographicalInfo() {
+    const { climate, terrain, surface_water, population } = this.props.content;
+    return { climate, terrain, surface_water, population };
+  }
+
+  astronomicalInfo() {
+    const {
+      rotation_period,
+      orbital_period,
+      diameter,
+      gravity
+    } = this.props.content;
+    return { rotation_period, orbital_period, diameter, gravity };
+  }
+
   render() {
     return (
       <React.Fragment>
-        {!!this.props.content && <Header name={this.props.content.name} />}
+        {!!this.props.content && (
+          <React.Fragment>
+            <Header name={this.props.content.name} />
+            <Grid container>
+              <Info title="Geographical Info" info={this.geographicalInfo()} />
+              <Info title="Astronomical Info" info={this.astronomicalInfo()} />
+            </Grid>
+          </React.Fragment>
+        )}
       </React.Fragment>
     );
   }
