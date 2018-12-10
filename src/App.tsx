@@ -17,7 +17,17 @@ class App extends React.Component<IProps> {
   public render() {
     return (
       <Layout forceUpdateApp={this.forceUpdate.bind(this)}>
-        {this.props.loading && <CircularProgress />}
+        {this.props.loading && (
+          <CircularProgress
+            style={{
+              width: 80,
+              height: 80,
+              right: ((window.innerWidth / 12) * 10) / 2 - 40,
+              top: window.innerHeight / 2 - 40,
+              position: "absolute"
+            }}
+          />
+        )}
         <Route exact path="/" component={HomeContainer} />
         <Route exact path="/planets/:id" component={PlanetsContainer} />
       </Layout>
