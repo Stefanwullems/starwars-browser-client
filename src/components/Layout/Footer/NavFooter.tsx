@@ -9,8 +9,7 @@ import {
 import { RouteComponentProps } from "react-router";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import cleanUpContent from "../../redux/actions/clean-up-content";
-import contentCount from "src/redux/reducers/contentCount";
+import cleanUpContent from "src/redux/actions/clean-up-content";
 
 const styles = createStyles({
   footerContainer: {

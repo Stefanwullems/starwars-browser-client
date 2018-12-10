@@ -2,9 +2,10 @@ import * as React from "react";
 
 import { Route } from "react-router-dom";
 
-import Layout from "./components/Layout";
-import PlanetsContainer from "./components/Planets/PlanetsContainer";
+import Layout from "./components/Layout/Layout";
+import PlanetsContainer from "./components/Models/Planets/PlanetsContainer";
 import HomeContainer from "./components/Home/HomeContainer";
+import CharactersContainer from "./components/Models/Characters/CharactersContainer";
 
 import { connect } from "react-redux";
 import { CircularProgress } from "@material-ui/core";
@@ -30,6 +31,7 @@ class App extends React.Component<IProps> {
         )}
         <Route exact path="/" component={HomeContainer} />
         <Route exact path="/planets/:id" component={PlanetsContainer} />
+        <Route exact path="/characters/:id" component={CharactersContainer} />
       </Layout>
     );
   }

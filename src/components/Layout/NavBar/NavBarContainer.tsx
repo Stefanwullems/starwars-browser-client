@@ -18,6 +18,9 @@ class NavBarContainer extends React.Component<IProps> {
             <NavButton to="/" onClick={this.props.forceUpdateApp}>
               Home
             </NavButton>
+            <NavButton to="/characters/1" onClick={this.props.forceUpdateApp}>
+              Characters
+            </NavButton>
             <NavButton to="/planets/1" onClick={this.props.forceUpdateApp}>
               Planets
             </NavButton>
