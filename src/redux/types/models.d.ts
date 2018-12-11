@@ -1,7 +1,8 @@
-type Content = Planet | Character;
-type Models = "planets" | "characters";
+type Content = Planet | Character | Film;
+type Models = "planets" | "characters" | "films";
 
 interface Planet {
+  id: number;
   name: string;
   climate: string;
   rotation_period: string;
@@ -11,11 +12,12 @@ interface Planet {
   terrain: string;
   surface_water: string;
   population: string;
-  residents: string[];
-  films: string[];
+  residents: null;
+  films: null;
 }
 
 interface Character {
+  id: number;
   name: string;
   birth_year: string;
   eye_color: string;
@@ -25,8 +27,22 @@ interface Character {
   mass: string;
   skin_color: string;
   homeworld: string;
-  films: string[];
-  species: string[];
-  starships: string[];
-  vehicles: string[];
+  films: null;
+  species: null;
+  starships: null;
+  vehicles: null;
+}
+
+interface Film {
+  id: number;
+  title: string;
+  opening_crawl: string;
+  director: string;
+  producer: string;
+  release_date: string;
+  species: null;
+  starships: null;
+  vehicles: null;
+  characters: null;
+  planets: null;
 }

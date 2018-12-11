@@ -1,6 +1,6 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import fetchModel from "src/redux/actions/fetch-model";
+import fetchModel from "src/redux/actions/fetch-content";
 import cleanUpContent from "src/redux/actions/clean-up-content";
 import { RouteComponentProps } from "react-router";
 import ModelHeader from "../Reusable/ModelHeader";

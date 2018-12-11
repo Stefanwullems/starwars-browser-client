@@ -24,12 +24,12 @@ class Layout extends React.Component<IProps> {
     const { classes, children } = this.props;
     return (
       <Grid container>
-        <Grid item xs={2}>
+        <Grid item xs={3} sm={2}>
           <nav className={classes.navBar}>
             <NavBarContainer forceUpdateApp={this.props.forceUpdateApp} />
           </nav>
         </Grid>
-        <Grid item xs={10}>
+        <Grid item xs={9} sm={10}>
           <main className={classes.main}>{children}</main>
           <footer className={classes.footer}>
             <FooterContainer />

@@ -3,12 +3,13 @@ import * as React from "react";
 import { Route } from "react-router-dom";
 
 import Layout from "./components/Layout/Layout";
-import PlanetsContainer from "./components/Models/Planets/PlanetsContainer";
+import PlanetsContainer from "./components/Content/Planets/PlanetsContainer";
 import HomeContainer from "./components/Home/HomeContainer";
-import CharactersContainer from "./components/Models/Characters/CharactersContainer";
+import CharactersContainer from "./components/Content/Characters/CharactersContainer";
 
 import { connect } from "react-redux";
 import { CircularProgress } from "@material-ui/core";
+import FilmsContainer from "./components/Content/Films/FilmsContainer";
 
 interface IProps {
   loading: boolean;
@@ -30,17 +31,9 @@ class App extends React.Component<IProps> {
           />
         )}
         <Route exact path="/" component={HomeContainer} />
-        <Route exact path="/planets/:id" component={PlanetsContainer} />
-        <Route
-          exact
-          path="/characters/:id"
-          render={props => (
-            <CharactersContainer
-              {...props}
-              forceUpdateApp={this.forceUpdate.bind(this)}
-            />
-          )}
-        />
+        <Route path="/planets/:id" component={PlanetsContainer} />
+        <Route path="/characters/:id" component={CharactersContainer} />
+        <Route path="/films/:id" component={FilmsContainer} />
       </Layout>
     );
   }
