@@ -6,11 +6,13 @@ import NavButtonLink from "./NavButtonLink";
 import { connect } from "react-redux";
 import fetchNamesAndIds from "src/redux/actions/fetch-names-and-ids";
 import cleanUpNamesAndIds from "src/redux/actions/clean-up-names-and-ids";
+import cleanUpContent from "src/redux/actions/clean-up-content";
 
 interface IProps {
   forceUpdateApp: () => void;
   fetchNamesAndIds: (model: Models) => void;
   cleanUpNamesAndIds: () => void;
+  cleanUpContent: () => void;
   namesAndIds: NameAndId[] | null;
 }
 
@@ -44,7 +46,7 @@ class NavBarContainer extends React.Component<IProps, IState> {
 
   render() {
     const forceUpdateApp = this.props.forceUpdateApp;
-
+    const cleanUpContent = this.props.cleanUpContent;
     return (
       <React.Fragment>
         <NavHeader />
@@ -85,9 +87,11 @@ class NavBarContainer extends React.Component<IProps, IState> {
                 {this.props.namesAndIds.map(nameAndId => {
                   return (
                     <NavButtonLink
+                      key={nameAndId.id}
                       to={`/${this.state.model}/${nameAndId.id}`}
                       onClick={() => {
                         forceUpdateApp();
+                        cleanUpContent();
                       }}
                     >
                       {nameAndId.name}
@@ -104,7 +108,7 @@ class NavBarContainer extends React.Component<IProps, IState> {
 }
 
 const mstp = ({ namesAndIds }) => ({ namesAndIds });
-const mdtp = { fetchNamesAndIds, cleanUpNamesAndIds };
+const mdtp = { fetchNamesAndIds, cleanUpNamesAndIds, cleanUpContent };
 
 export default connect(
   mstp,
