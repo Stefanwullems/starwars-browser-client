@@ -1,6 +1,11 @@
 type Content = Planet | Character | Film;
 type Models = "planets" | "characters" | "films";
 
+interface NameAndId {
+  id: number;
+  name: string;
+}
+
 interface Planet {
   id: number;
   name: string;
