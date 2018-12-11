@@ -1,9 +1,9 @@
 import { NamesAndIdsAction } from "../types/actions";
 
 export default function(
-  state: NamesAndIds | null = null,
+  state: NameAndId[] | null = null,
   { type, payload }: NamesAndIdsAction
-): NamesAndIds {
+): NameAndId[] {
   switch (type) {
     case "NAMES_AND_IDS_FETCHED":
       return payload;

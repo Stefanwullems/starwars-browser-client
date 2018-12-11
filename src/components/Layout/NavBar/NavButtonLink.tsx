@@ -1,9 +1,10 @@
 import * as React from "react";
+import { Link } from "react-router-dom";
 import { withStyles, createStyles, WithStyles } from "@material-ui/core";
 
 interface IProps extends WithStyles<typeof styles> {
-  onClick: (model: Models) => void;
-  model: Models;
+  to: string;
+  onClick: () => void;
 }
 
 const styles = createStyles({
@@ -18,22 +19,26 @@ const styles = createStyles({
     "&:hover": {
       backgroundColor: "#24292e"
     }
+  },
+  link: {
+    textDecoration: "none"
   }
 });
 
-const NavButton: React.FunctionComponent<IProps> = props => {
-  const { classes, children, model } = props;
+const NavButtonLink: React.FunctionComponent<IProps> = props => {
+  const { to, classes, children } = props;
 
   return (
-    <div
+    <Link
+      to={to}
+      className={classes.link}
       onClick={e => {
-        props.onClick(model);
+        props.onClick();
       }}
-      className={classes.navButton}
     >
-      {children}
-    </div>
+      <div className={classes.navButton}>{children}</div>
+    </Link>
   );
 };
 
-export default withStyles(styles)(NavButton);
+export default withStyles(styles)(NavButtonLink);

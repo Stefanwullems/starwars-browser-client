@@ -5,7 +5,7 @@ interface IAction {
   payload?: NameAndId[];
 }
 
-function fetchNameAndIds(model: Models) {
+function fetchNamesAndIds(model: Models) {
   return async function(dispatch: (Action: IAction) => void) {
     try {
       const res = await request.get(`https://localhost:5002/api/${model}`);
@@ -19,4 +19,4 @@ function fetchNameAndIds(model: Models) {
   };
 }
 
-export default fetchNameAndIds;
+export default fetchNamesAndIds;
