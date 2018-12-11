@@ -3,9 +3,9 @@ import * as React from "react";
 import { Route } from "react-router-dom";
 
 import Layout from "./components/Layout/Layout";
-import PlanetsContainer from "./components/Models/Planets/PlanetsContainer";
+import PlanetsContainer from "./components/Content/Planets/PlanetsContainer";
 import HomeContainer from "./components/Home/HomeContainer";
-import CharactersContainer from "./components/Models/Characters/CharactersContainer";
+import CharactersContainer from "./components/Content/Characters/CharactersContainer";
 
 import { connect } from "react-redux";
 import { CircularProgress } from "@material-ui/core";
