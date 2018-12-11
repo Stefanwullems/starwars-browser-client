@@ -12,21 +12,16 @@ interface IProps {
   cleanUpContent: () => void;
   content: Film | null;
   loading: boolean;
-  forceUpdateApp: () => void;
 }
 
 class FilmsContainer extends React.Component<IProps & RouteComponentProps> {
-  readonly state = {
-    homeworld: null
-  };
-
   componentDidMount() {
-    this.props.fetchModel("characters", this.props.match.params["id"]);
+    this.props.fetchModel("films", this.props.match.params["id"]);
   }
 
   async componentDidUpdate() {
     if (!this.props.content && !this.props.loading) {
-      this.props.fetchModel("characters", this.props.match.params["id"]);
+      this.props.fetchModel("films", this.props.match.params["id"]);
     }
   }
 

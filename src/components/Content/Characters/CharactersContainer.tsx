@@ -12,16 +12,11 @@ interface IProps {
   cleanUpContent: () => void;
   content: Character | null;
   loading: boolean;
-  forceUpdateApp: () => void;
 }
 
 class CharactersContainer extends React.Component<
   IProps & RouteComponentProps
 > {
-  readonly state = {
-    homeworld: null
-  };
-
   componentDidMount() {
     this.props.fetchModel("characters", this.props.match.params["id"]);
   }
@@ -65,7 +60,6 @@ class CharactersContainer extends React.Component<
             <ModelHeader name={this.props.content.name} />
             <Grid container>
               <Info title="Personal Info" info={this.getPersonalInfo()} />
-              <Info title="Astronomical Info" info={{ test: "test" }} />
             </Grid>
           </React.Fragment>
         )}

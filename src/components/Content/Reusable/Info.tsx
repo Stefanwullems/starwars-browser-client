@@ -11,7 +11,8 @@ interface IProps {
 
 const styles = createStyles({
   container: {
-    paddingLeft: "15vw"
+    paddingLeft: "5vw",
+    paddingRight: "5vw"
   }
 });
 

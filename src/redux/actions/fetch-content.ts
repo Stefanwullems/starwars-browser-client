@@ -10,6 +10,7 @@ function fetchModel(model: Models, id: number) {
   return async function(dispatch: (Action: IAction) => void) {
     dispatch({ type: "LOADING" });
 
+    console.log(id, model);
     try {
       const res = await request.get(
         `https://localhost:5002/api/${model}/${id}`

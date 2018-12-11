@@ -9,6 +9,7 @@ import CharactersContainer from "./components/Content/Characters/CharactersConta
 
 import { connect } from "react-redux";
 import { CircularProgress } from "@material-ui/core";
+import FilmsContainer from "./components/Content/Films/FilmsContainer";
 
 interface IProps {
   loading: boolean;
@@ -30,17 +31,9 @@ class App extends React.Component<IProps> {
           />
         )}
         <Route exact path="/" component={HomeContainer} />
-        <Route exact path="/planets/:id" component={PlanetsContainer} />
-        <Route
-          exact
-          path="/characters/:id"
-          render={props => (
-            <CharactersContainer
-              {...props}
-              forceUpdateApp={this.forceUpdate.bind(this)}
-            />
-          )}
-        />
+        <Route path="/planets/:id" component={PlanetsContainer} />
+        <Route path="/characters/:id" component={CharactersContainer} />
+        <Route path="/films/:id" component={FilmsContainer} />
       </Layout>
     );
   }
