@@ -3,7 +3,7 @@ import ModelHeader from "../Reusable/ModelHeader";
 import { Grid } from "@material-ui/core";
 import Info from "../Reusable/Info";
 import { connect } from "react-redux";
-import fetchModel from "src/redux/actions/fetch-model";
+import fetchModel from "src/redux/actions/fetch-content";
 import cleanUpContent from "src/redux/actions/clean-up-content";
 import { RouteComponentProps } from "react-router";
 

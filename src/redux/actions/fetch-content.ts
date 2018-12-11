@@ -3,7 +3,7 @@ import setContentCount from "./set-content-count";
 
 interface IAction {
   type: ContentActionType | LoadingActionType | ContentCountActionType;
-  payload?: Planet | string | number;
+  payload?: Content | number;
 }
 
 function fetchModel(model: Models, id: number) {
@@ -22,12 +22,16 @@ function fetchModel(model: Models, id: number) {
         case "characters":
           dispatch(setContentCount(87));
           break;
+        case "films":
+          dispatch(setContentCount(7));
+          break;
       }
 
-      dispatch({ type: "CONTENT_FETCHED", payload: res.body as Planet });
+      dispatch({ type: "CONTENT_FETCHED", payload: res.body as Content });
       dispatch({ type: "LOADING_SUCCESS" });
     } catch (error) {
-      dispatch({ type: "LOADING_ERROR", payload: (error as Error).message });
+      console.error(error);
+      dispatch({ type: "LOADING_ERROR" });
     }
   };
 }
