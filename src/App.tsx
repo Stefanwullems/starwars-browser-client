@@ -3,20 +3,23 @@ import * as React from "react";
 import { Route } from "react-router-dom";
 
 import Layout from "./components/Layout/Layout";
-import PlanetsContainer from "./components/Content/Planets/PlanetsContainer";
+import PlanetsPage from "./components/Content/Planets/PlanetsPage";
 import HomeContainer from "./components/Home/HomeContainer";
-import CharactersContainer from "./components/Content/Characters/CharactersContainer";
+import CharactersPage from "./components/Content/Characters/CharactersPage";
+import FilmsPage from "./components/Content/Films/FilmsPage";
 
 import { connect } from "react-redux";
 import { CircularProgress } from "@material-ui/core";
-import FilmsContainer from "./components/Content/Films/FilmsContainer";
+import ContentContainer from "./components/Content/ContentContainer";
 
 interface IProps {
   loading: boolean;
+  content: Content;
 }
 
 class App extends React.Component<IProps> {
   public render() {
+    const content = this.props.content;
     return (
       <Layout forceUpdateApp={this.forceUpdate.bind(this)}>
         {this.props.loading && (
@@ -31,14 +34,41 @@ class App extends React.Component<IProps> {
           />
         )}
         <Route exact path="/" component={HomeContainer} />
-        <Route path="/planets/:id" component={PlanetsContainer} />
-        <Route path="/characters/:id" component={CharactersContainer} />
-        <Route path="/films/:id" component={FilmsContainer} />
+        <Route
+          path="/planets/:id"
+          render={props => {
+            return (
+              <ContentContainer {...props} model="planets">
+                <PlanetsPage content={content} />
+              </ContentContainer>
+            );
+          }}
+        />
+        <Route
+          path="/characters/:id"
+          render={props => {
+            return (
+              <ContentContainer {...props} model="characters">
+                <CharactersPage content={content} />
+              </ContentContainer>
+            );
+          }}
+        />
+        <Route
+          path="/films/:id"
+          render={props => {
+            return (
+              <ContentContainer {...props} model="films">
+                <FilmsPage content={content} />
+              </ContentContainer>
+            );
+          }}
+        />
       </Layout>
     );
   }
 }
 
-const mstp = ({ loading }) => ({ loading });
+const mstp = ({ loading, content }) => ({ loading, content });
 
 export default connect(mstp)(App);

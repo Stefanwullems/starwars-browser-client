@@ -17,4 +17,5 @@ const rootReducer = combineReducers<IRootReducer>({
   contentCount,
   namesAndIds
 });
+
 export default rootReducer;
