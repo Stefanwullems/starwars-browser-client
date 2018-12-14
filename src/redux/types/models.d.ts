@@ -40,7 +40,7 @@ interface Character {
 
 interface Film {
   id: number;
-  title: string;
+  name: string;
   opening_crawl: string;
   director: string;
   producer: string;
