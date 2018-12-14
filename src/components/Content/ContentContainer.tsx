@@ -11,16 +11,17 @@ interface IProps {
   cleanUpContent: () => void;
   content: Content | null;
   loading: boolean;
+  model: Models;
 }
 
 class ContentContainer extends React.Component<IProps & RouteComponentProps> {
   componentDidMount() {
-    this.props.fetchModel("characters", this.props.match.params["id"]);
+    this.props.fetchModel(this.props.model, this.props.match.params["id"]);
   }
 
   componentDidUpdate() {
     if (!this.props.content && !this.props.loading) {
-      this.props.fetchModel("characters", this.props.match.params["id"]);
+      this.props.fetchModel(this.props.model, this.props.match.params["id"]);
     }
   }
   componentWillUnmount() {

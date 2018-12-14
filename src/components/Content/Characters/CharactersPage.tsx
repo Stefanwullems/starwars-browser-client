@@ -2,13 +2,16 @@ import * as React from "react";
 import Info from "../Reusable/Info";
 
 interface IProps {
-  content: Character | null;
+  content: Content;
 }
 
 const CharactersPage: React.FC<IProps> = ({ content }) => {
   return (
     <React.Fragment>
-      <Info title="Personal Info" info={getPersonalInfo(content)} />
+      <Info
+        title="Personal Info"
+        info={getPersonalInfo(content as Character)}
+      />
     </React.Fragment>
   );
 };
