@@ -1,5 +1,5 @@
-type Content = Planet | Character | Film;
-type Models = "planets" | "characters" | "films";
+type Content = Planet | Character | Film | Vehicle;
+type Models = "planets" | "characters" | "films"|"vehicles";
 
 interface NameAndId {
   id: number;
@@ -19,6 +19,22 @@ interface Planet {
   population: string;
   residents: null;
   films: null;
+}
+
+interface Vehicle {
+  name: string;
+  model: string;
+  vehicle_class: string;
+  manufacturer: string;
+  length: string;
+  cost_in_credits: string;
+  crew: string;
+  passengers: string;
+  max_atmosphering_speed: string;
+  cargo_capacity: string;
+  consumables: string;
+  films: null;
+  pilots: null;
 }
 
 interface Character {

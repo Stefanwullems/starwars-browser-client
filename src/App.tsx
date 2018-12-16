@@ -7,6 +7,7 @@ import PlanetsPage from "./components/Content/Planets/PlanetsPage";
 import HomeContainer from "./components/Home/HomeContainer";
 import CharactersPage from "./components/Content/Characters/CharactersPage";
 import FilmsPage from "./components/Content/Films/FilmsPage";
+import VehiclesPage from "./components/Content/Vehicles/VehiclesPage"
 
 import { connect } from "react-redux";
 import { CircularProgress } from "@material-ui/core";
@@ -60,6 +61,16 @@ class App extends React.Component<IProps> {
             return (
               <ContentContainer {...props} model="films">
                 <FilmsPage content={content} />
+              </ContentContainer>
+            );
+          }}
+        />
+        <Route
+          path="/vehcles/:id"
+          render={props => {
+            return (
+              <ContentContainer {...props} model="vehicles">
+                <VehiclesPage content={content} />
               </ContentContainer>
             );
           }}
