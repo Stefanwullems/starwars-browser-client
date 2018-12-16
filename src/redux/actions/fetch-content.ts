@@ -11,9 +11,9 @@ function fetchModel(model: Models, id: number) {
     dispatch({ type: "LOADING" });
 
     try {
-      const res = await request.get(
+        const content: Content= (await request.get(
         `https://localhost:5002/api/${model}/${id}`
-      );
+      )).body
 
       switch (model) {
         case "planets":
@@ -25,9 +25,11 @@ function fetchModel(model: Models, id: number) {
         case "films":
           dispatch(setContentCount(7));
           break;
+        case "vehicles":
+          dispatch(setContentCount(39))
       }
 
-      dispatch({ type: "CONTENT_FETCHED", payload: res.body as Content });
+      dispatch({ type: "CONTENT_FETCHED", payload: content});
       dispatch({ type: "LOADING_SUCCESS" });
     } catch (error) {
       console.error(error);

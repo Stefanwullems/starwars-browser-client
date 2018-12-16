@@ -21,6 +21,7 @@ interface IState {
 }
 
 class NavBarContainer extends React.Component<IProps, IState> {
+  
   readonly state: IState = {
     model: null
   };
@@ -31,7 +32,7 @@ class NavBarContainer extends React.Component<IProps, IState> {
     }
   }
 
-  onClickNavButton(model) {
+  onClickNavButton(model: Models) {
     this.setState({ model });
   }
 
@@ -79,6 +80,12 @@ class NavBarContainer extends React.Component<IProps, IState> {
                   onClick={this.onClickNavButton.bind(this)}
                 >
                   Planets
+                </NavButton>
+                <NavButton
+                  model="vehicles"
+                  onClick={this.onClickNavButton.bind(this)}
+                >
+                  Vehicles
                 </NavButton>
               </React.Fragment>
             )}
